@@ -39,4 +39,26 @@ Stone::Stone() : Block("Stone", 1.5, { "Cobblestone" })
 {
 }
 
+
+
+
+
+class LightEmittingBlock : public Block
+{
+public:
+	LightEmittingBlock(double newLightLevel, bool startLit);
+	
+	double GetLightLevel() { return lightLevel; }
+	bool IsBlockEmittingLight() { return isLit; }
+	virtual void OnPlayerClick() = 0;
+
+private:
+	double lightLevel;
+	bool isLit;
+};
+
+LightEmittingBlock::LightEmittingBlock(double newLightLevel, bool startLit) : lightLevel(newLightLevel), startLit(isLit)
+{
+}
+
 #endif // !BLOCKS_H
