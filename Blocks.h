@@ -8,7 +8,6 @@ class Block
 {
 public:
 	Block(std::string blockName, double blockHardness, std::vector<std::string> blockDrops);
-	~Block();
 
 	std::string GetBlockName() { return name; }
 	double GetHardness() { return hardness; }
@@ -21,13 +20,22 @@ private:
 
 };
 
-
-
 Block::Block(std::string blockName, double blockHardness, std::vector<std::string> blockDrops) : name(blockName), hardness(blockHardness), itemDrops(blockDrops)
 {
 }
 
-Block::~Block()
+
+
+
+
+class Stone : public Block
+{
+public:
+	Stone();
+
+};
+
+Stone::Stone() : Block("Stone", 1.5, { "Cobblestone" })
 {
 }
 
