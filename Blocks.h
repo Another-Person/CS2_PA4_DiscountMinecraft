@@ -46,10 +46,11 @@ Stone::Stone() : Block("Stone", 1.5, { "Cobblestone" })
 class LightEmittingBlock : public Block
 {
 public:
-	LightEmittingBlock(double newLightLevel, bool startLit);
+	LightEmittingBlock(double newLightLevel, bool startLit, std::string blockName, double blockHardness, std::vector<std::string> blockDrops);
 	
 	double GetLightLevel() { return lightLevel; }
 	bool IsBlockEmittingLight() { return isLit; }
+	void toggleIsLit() { isLit = !isLit; }
 	virtual void OnPlayerClick() = 0;
 
 private:
@@ -57,8 +58,23 @@ private:
 	bool isLit;
 };
 
-LightEmittingBlock::LightEmittingBlock(double newLightLevel, bool startLit) : lightLevel(newLightLevel), isLit(startLit)
+LightEmittingBlock::LightEmittingBlock(double newLightLevel, bool startLit, std::string blockName, double blockHardness, std::vector<std::string> blockDrops) : Block(blockName, blockHardness, blockDrops), lightLevel(newLightLevel), isLit(startLit)
 {
 }
 
+
+
+
+
+class Lamp : public LightEmittingBlock
+{
+public:
+	Lamp();
+	void OnPlayerClick() { toggleIsLit(); }
+
+};
+
+Lamp::Lamp() : LightEmittingBlock(1, false, "Lamp", .5, { "glowstone" })
+{
+}
 #endif // !BLOCKS_H
