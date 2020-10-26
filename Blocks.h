@@ -57,7 +57,7 @@ private:
 	bool isLit;
 };
 
-LightEmittingBlock::LightEmittingBlock(double newLightLevel, bool startLit) : lightLevel(newLightLevel), startLit(isLit)
+LightEmittingBlock::LightEmittingBlock(double newLightLevel, bool startLit) : lightLevel(newLightLevel), isLit(startLit)
 {
 }
 
