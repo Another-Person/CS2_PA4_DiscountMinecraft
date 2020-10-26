@@ -51,10 +51,9 @@ public:
 	
 	double GetLightLevel() { return lightLevel; }
 	bool IsBlockEmittingLight() { return isLit; }
-	void toggleIsLit() { isLit = !isLit; }
 	virtual void OnPlayerClick() = 0;
 
-private:
+protected:
 	double lightLevel;
 	bool isLit;
 };
@@ -72,7 +71,7 @@ class Lamp : public LightEmittingBlock
 public:
 	Lamp();
 
-	void OnPlayerClick() { toggleIsLit(); }
+	void OnPlayerClick() { isLit = !isLit; }
 
 };
 
