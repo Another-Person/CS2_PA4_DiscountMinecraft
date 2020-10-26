@@ -11,7 +11,7 @@ public:
 
 	std::string GetBlockName() { return name; }
 	double GetHardness() { return hardness; }
-	std::vector<std::string> GetItemFromDrops() { return itemDrops; }
+	std::vector<std::string> GetItemFromBlock() { return itemDrops; }
 
 private:
 	std::string name;
@@ -96,6 +96,22 @@ private:
 };
 
 BurnableBlock::BurnableBlock(double startingBurnDuration, std::string blockName, double blockHardness, std::vector<std::string> blockDrops) : Block(blockName, blockHardness, blockDrops), burnDuration(startingBurnDuration)
+{
+}
+
+
+
+
+
+class WoodPlanks : public BurnableBlock
+{
+public:
+	WoodPlanks();
+
+	void Burn() { std::cout << "It's burning!\n"; }
+};
+
+WoodPlanks::WoodPlanks() : BurnableBlock(32.5, "Wood Planks", 1.5, { "Wood Planks" })
 {
 }
 #endif // !BLOCKS_H
