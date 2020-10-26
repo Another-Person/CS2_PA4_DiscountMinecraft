@@ -70,11 +70,32 @@ class Lamp : public LightEmittingBlock
 {
 public:
 	Lamp();
+
 	void OnPlayerClick() { toggleIsLit(); }
 
 };
 
 Lamp::Lamp() : LightEmittingBlock(1, false, "Lamp", .5, { "glowstone" })
+{
+}
+
+
+
+
+
+class BurnableBlock : public Block
+{
+public:
+	BurnableBlock(double startingBurnDuration, std::string blockName, double blockHardness, std::vector<std::string> blockDrops);
+
+	double GetBurnDuration() { return burnDuration; }
+	virtual void Burn() = 0;
+
+private:
+	double burnDuration;
+};
+
+BurnableBlock::BurnableBlock(double startingBurnDuration, std::string blockName, double blockHardness, std::vector<std::string> blockDrops) : Block(blockName, blockHardness, blockDrops), burnDuration(startingBurnDuration)
 {
 }
 #endif // !BLOCKS_H
